@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import cv2
 from sklearn import linear_model, decomposition, datasets
 from sklearn.pipeline import Pipeline
-from sklearn.model_selection import GridSearchCV
 from matplotlib.ticker import NullFormatter
 
 from keras.preprocessing import sequence
@@ -59,9 +58,9 @@ print Ytrain.shape, Yvalid.shape, Ytest.shape
 
 
 model = Sequential()
-model.add(LSTM(132, input_shape=(maxlen, 2)))
+model.add(LSTM(250, input_shape=(maxlen, 2)))
 model.add(Dense(numClass,activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer = RMSprop(),metrics=['accuracy'])
 print "training.."
-model.fit(Xtrain,Ytrain,batch_size = 20,nb_epoch = 20, validation_data=[Xvalid,Yvalid])
+model.fit(Xtrain,Ytrain,batch_size = 1000,nb_epoch = 1000, validation_data=[Xvalid,Yvalid])
